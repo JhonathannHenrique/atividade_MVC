@@ -1,0 +1,11 @@
+{
+  "name": "atividade_mvc",
+  "version": "1.0.0",
+  "description": "Nesta atividade, você desenvolverá uma API REST em Node.js utilizando a arquitetura MVC para gerenciar projetos, \r tarefas e usuários. O armazenamento será feito temporariamente em arrays. O objetivo é reforçar os conceitos de \r separação de responsabilidades e manipulação de dados via API.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
