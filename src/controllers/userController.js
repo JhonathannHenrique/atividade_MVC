@@ -16,6 +16,12 @@ class UserController {
 
         res.json(users)
     }
+
+    static deleteUser(req, res) {
+        const { id } = req.params;
+        const user = User.findID(id);
+
+    }
 }
 
 module.exports = UserController;

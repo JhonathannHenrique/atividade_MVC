@@ -13,6 +13,8 @@ class Project {
     static findAll() {
         return projects
     }
+
+  
 }
 
 module.exports = Project
