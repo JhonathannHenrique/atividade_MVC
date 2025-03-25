@@ -1,32 +1,40 @@
-const users = [];
+const usuarios = []
 
-class User {
-    constructor(id, name, email, password) {
+class Usuario {
+    constructor(id,nome, email, senha) {
         this.id = id;
-        this.name = name;
+        this.nome = nome;
         this.email = email;
-        this.password = password;
+        this.senha = senha;
     }
 
     save() {
-        users.push(this);
+        usuarios.push(this)
     }
 
-    static findAll() {
-        return users;
+    static fetchAll() {
+        return usuarios;
     }
 
-    static findID(id) {
-        console.log(User.users);
-        return User.users.find(user => user.id == id);
-    }
+    static update(id, nome, email, senha) {  
+        const usuario = usuarios.find(p => p.id === id);  
+        if (usuario) {  
+            usuario.nome = nome;
+            usuario.email = email;
+            usuario.senha = senha;
+            return usuario;  
+        }  
+        return null;  
+    }  
 
-    static deleteUser(id) {
-        const index = User.users.findIndex(user => user.id == id);
-        if(index !== -1) {
-            User.users.splice(index, 1);
-        }
-    }
+    static delete(id) {  
+        const index = usuarios.findIndex(p => p.id === id);  
+        if (index !== -1) {  
+            usuarios.splice(index, 1);  
+            return true;  
+        }  
+        return false;  
+    }  
 }
 
-module.exports = User;
+module.exports = Usuario;

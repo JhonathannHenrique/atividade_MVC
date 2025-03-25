@@ -1,21 +1,39 @@
-const Project = require('../models/project')
+const Projeto = require('../models/projeto');  
 
-class ProjectController {
+class ProjetoController {   
+    static insert(req, res) {  
+        const { nome, descricao } = req.body;  
+        const id = Projeto.fetchAll().length + 1;
+        const projeto = new Projeto(id, nome, descricao);  
+        projeto.save();  
+        res.status(201).json(projeto);  
+    }  
 
-    static insert(req, res) {
-        const { id, name, descrition} = req.body
+    static findAll(req, res) {  
+        const projetos = Projeto.fetchAll();  
+        res.json(projetos);  
+    }  
 
-        const project = new Project(id, name, descrition)
-        project.save()
+    static update(req, res) {  
+        const { id } = req.params;  
+        const { nome, descricao } = req.body;  
+        const projetoAtualizado = Projeto.update(parseInt(id), nome, descricao);  
+        if (projetoAtualizado) {  
+            res.json(projetoAtualizado);  
+        } else {  
+            res.status(404).json({ message: 'Projeto não encontrado' });  
+        }  
+    }  
 
-        res.status(201).json(project)
-    }
+    static remove(req, res) {  
+        const { id } = req.params;  
+        const projetoDeletado = Projeto.delete(parseInt(id));  
+        if (projetoDeletado) {  
+            res.status(204).send(); 
+        } else {  
+            res.status(404).json({ message: 'Projeto não encontrado' });  
+        }  
+    }  
+}  
 
-    static findAll(req, res) {
-        const projects = Project.findAll()
-
-        res.json(projects)
-    }
-}
-
-module.exports = ProjectController;
+module.exports = ProjetoController;  
