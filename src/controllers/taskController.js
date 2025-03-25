@@ -1,39 +1,39 @@
-const Tarefa = require('../models/tarefa');  
+const Task = require('../models/task');  
 
-class tarefaController {  
+class taskController {  
     static insert(req, res) {  
-        const { titulo, idprojeto, idusuario } = req.body;  
-        const id = Tarefa.fetchAll().length + 1;  
-        const tarefa = new Tarefa(id, titulo, false, idprojeto, idusuario); 
-        tarefa.save();  
-        res.status(201).json(tarefa);  
+        const { title, idProject, idUser } = req.body;  
+        const id = Task.fetchAll().length + 1;  
+        const task = new task(id, title, false, idProject, idUser); 
+        task.save();  
+        res.status(201).json(task);  
     }  
 
     static findAll(req, res) {  
-        const tarefa = Tarefa.fetchAll();  
-        res.json(tarefa);  
+        const task = Task.fetchAll();  
+        res.json(task);  
     }  
  
     static update(req, res) {  
         const { id } = req.params;  
-        const { titulo, status } = req.body;  
-        const tarefaAtualizada = Tarefa.update(parseInt(id), titulo, status);  
-        if (tarefaAtualizada) {  
-            res.json(tarefaAtualizada);  
+        const { title, status } = req.body;  
+        const taskAtualizada = Task.update(parseInt(id), title, status);  
+        if (taskAtualizada) {  
+            res.json(taskAtualizada);  
         } else {  
-            res.status(404).json({ message: 'Tarefa não encontrada' });  
+            res.status(404).json({ message: 'task não encontrada' });  
         }  
     }  
 
     static remove(req, res) {  
         const { id } = req.params;  
-        const tarefaDeletada = Tarefa.delete(parseInt(id));  
-        if (tarefaDeletada) {  
+        const taskDeletada = Task.delete(parseInt(id));  
+        if (taskDeletada) {  
             res.status(204).send(); 
         } else {  
-            res.status(404).json({ message: 'Tarefa não encontrada' });  
+            res.status(404).json({ message: 'task não encontrada' });  
         }  
     }  
 }  
 
-module.exports = tarefaController;  
+module.exports = taskController;  

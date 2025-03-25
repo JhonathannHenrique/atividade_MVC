@@ -1,39 +1,39 @@
-const projetos = []
+const projects = []
 
-class Projeto {
-    constructor(id,nome, descricao) {
+class Project {
+    constructor(id,name, descrition) {
         this.id = id;
-        this.nome = nome;
-        this.descricao = descricao;
+        this.name = name;
+        this.descrition = descrition;
         
     }
 
     save() {
-        projetos.push(this);
+        projects.push(this);
     }
 
     static fetchAll() {
-        return projetos;
+        return projects;
     }
     
-    static update(id, nome, descricao) {  
-        const projeto = projetos.find(p => p.id === id);  
+    static update(id, name, descrition) {  
+        const projeto = projects.find(p => p.id === id);  
         if (projeto) {  
-            projeto.nome = nome;
-            projeto.descricao = descricao;
+            projeto.name = name;
+            projeto.descrition = descrition;
             return projeto;  
         }  
         return null;  
     }  
 
     static delete(id) {  
-        const index = projetos.findIndex(p => p.id === id);  
+        const index = projects.findIndex(p => p.id === id);  
         if (index !== -1) {  
-            projetos.splice(index, 1);  
+            projects.splice(index, 1);  
             return true;  
         }  
         return false;  
     }  
 }
 
-module.exports = Projeto;
+module.exports = Project;

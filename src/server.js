@@ -1,31 +1,28 @@
 const express = require('express')
-const usuarioController = require('./controllers/usuarioController')
-const projetoController = require('./controllers/projetoController')
-const tarefaController = require('./controllers/tarefaController')
+const userController = require('./controllers/userController')
+const projectController = require('./controllers/projectController')
+const taskController = require('./controllers/taskController')
 const app = express()
-
-
-
 
 app.use(express.json());
 app.get('/', (req, res) => {
     res.send('Hello World!');
 })
 
-app.post('/usuario', usuarioController.insert);
-app.get('/usuario', usuarioController.findAll);
-app.put('/usuario/:id', usuarioController.update);
-app.delete('/usuario/:id', usuarioController.remove);
+app.post('/user', userController.insert);
+app.get('/user', userController.findAll);
+app.put('/user/:id', userController.update);
+app.delete('/user/:id', userController.remove);
 
-app.post('/projeto', projetoController.insert);
-app.get('/projeto', projetoController.findAll);
-app.put('/projeto/:id', projetoController.update);
-app.delete('/projeto/:id', projetoController.remove);
+app.post('/project', projectController.insert);
+app.get('/project', projectController.findAll);
+app.put('/project/:id', projectController.update);
+app.delete('/project/:id', projectController.remove);
 
-app.post('/tarefa', tarefaController.insert);
-app.get('/tarefa', tarefaController.findAll);
-app.put('/tarefa/:id', tarefaController.update);
-app.delete('/tarefa/:id', tarefaController.remove);
+app.post('/task', taskController.insert);
+app.get('/task', taskController.findAll);
+app.put('/task/:id', taskController.update);
+app.delete('/task/:id', taskController.remove);
 
 
 app.listen(3000, () => {

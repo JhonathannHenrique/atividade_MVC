@@ -1,25 +1,25 @@
-const Usuario = require('../models/usuario');  
+const User = require('../models/user');  
 
-class usuarioController {  
+class userController {  
     static insert(req, res) {  
-        const { nome, email, senha } = req.body;  
-        const id = Usuario.fetchAll().length + 1;  
-        const usuario = new Usuario(id, nome, email, senha);  
-        usuario.save();  
-        res.status(201).json(usuario);  
+        const { name, email, password } = req.body;  
+        const id = User.fetchAll().length + 1;  
+        const user = new User(id, name, email, password);  
+        user.save();  
+        res.status(201).json(user);  
     }  
  
     static findAll(req, res) {  
-        const usuarios = Usuario.fetchAll();  
-        res.json(usuarios);  
+        const users = User.fetchAll();  
+        res.json(users);  
     }  
 
     static update(req, res) {  
         const { id } = req.params;  
-        const { nome, email, senha } = req.body;  
-        const usuarioAtualizado = Usuario.update(parseInt(id), nome, email, senha);  
-        if (usuarioAtualizado) {  
-            res.json(usuarioAtualizado);  
+        const { name, email, password } = req.body;  
+        const userAtualizado = User.update(parseInt(id), name, email, password);  
+        if (userAtualizado) {  
+            res.json(userAtualizado);  
         } else {  
             res.status(404).json({ message: 'Usuário não encontrado' });  
         }  
@@ -27,8 +27,8 @@ class usuarioController {
 
     static remove(req, res) {  
         const { id } = req.params;  
-        const usuarioDeletado = Usuario.delete(parseInt(id));  
-        if (usuarioDeletado) {  
+        const userDeletado = User.delete(parseInt(id));  
+        if (userDeletado) {  
             res.status(204).send();  
         } else {  
             res.status(404).json({ message: 'Usuário não encontrado' });  
@@ -36,4 +36,4 @@ class usuarioController {
     }  
 }  
 
-module.exports = usuarioController;  
+module.exports = userController;  

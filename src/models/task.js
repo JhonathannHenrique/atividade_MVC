@@ -1,42 +1,42 @@
-const tarefas = []
+const tasks = []
 
-class Tarefa {
-    constructor(id,titulo, status, idprojeto, idusuario) {
+class Task {
+    constructor(id,title, status, idProject, idUser) {
         this.id = id;
-        this.titulo = titulo;
+        this.title = title;
         this.status = status | false;
-        this.idprojeto = idprojeto;
-        this.idusuario = idusuario;
+        this.idPidProject =idProject;
+        this.idUser = idUser;
     }
 
     save() {
-        tarefas.push(this);
+        tasks.push(this);
     }
 
     static fetchAll() {
-        return tarefas;
+        return tasks;
     }
 
-    static update(id, titulo, status, idprojeto, idusuario) {  
-        const tarefa = tarefas.find(p => p.id === id);  
-        if (tarefa) {  
-            tarefa.titulo = titulo;
-            tarefa.status = status;
-            tarefa.idprojeto = idprojeto;
-            tarefa.idusuario = idusuario;
-            return tarefa;  
+    static update(id, title, status,idProject, idUser) {  
+        const task = tasks.find(p => p.id === id);  
+        if (task) {  
+            task.title = title;
+            task.status = status;
+            task.idPidProject =idProject;
+            task.idUser = idUser;
+            return task;  
         }  
         return null;  
     }  
 
     static delete(id) {  
-        const index = tarefas.findIndex(p => p.id === id);  
+        const index = tasks.findIndex(p => p.id === id);  
         if (index !== -1) {  
-            tarefas.splice(index, 1);  
+            tasks.splice(index, 1);  
             return true;  
         }  
         return false;  
     }  
 }
 
-module.exports = Tarefa;
+module.exports = Task;
